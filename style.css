@@ -1,0 +1,357 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body.register-page {
+    background: linear-gradient(120deg, #3498db, #8e44ad);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-page .container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-page h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.register-page form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-page input[type="text"],
+.register-page input[type="password"],
+.register-page input[type="email"],
+.register-page select {
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.register-page input:focus,
+.register-page select:focus {
+    border-color: #8e44ad;
+    outline: none;
+}
+
+.register-page button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #8e44ad;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.register-page button:hover {
+    background-color: #732d91;
+}
+
+.register-page .message {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.register-page .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.register-page .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.register-page p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register-page a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.register-page a:hover {
+    text-decoration: underline;
+}
+
+.name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.name-group input {
+    flex: 1;
+}
+
+.phone-group {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.phone-group select {
+    flex: 1;
+}
+
+.phone-group input[name="phone"] {
+    flex: 2;
+}
+
+
+body.login-page {
+    background: linear-gradient(120deg, #3498db, #8e44ad);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-page .container {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-page h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.login-page form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page input[type="text"],
+.login-page input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.login-page input[type="text"]:focus,
+.login-page input[type="password"]:focus {
+    border-color: #8e44ad;
+    outline: none;
+}
+
+.login-page button {
+    width: 100%;
+    padding: 12px;
+    background: #8e44ad;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-page button:hover {
+    background: #732d91;
+}
+
+.login-page .error {
+    color: red;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.login-page p {
+    margin-top: 20px;
+    color: #555;
+    font-size: 14px;
+}
+
+.login-page a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.login-page a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .login-page .container {
+        padding: 30px 20px;
+    }
+}
+
+
+body.dashboard-page {
+    background-color: #f4f4f4;
+    display: flex;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dashboard-page.dark {
+    background-color: #1e1e2f;
+    color: #eee;
+}
+
+.sidebar {
+    background-color: #8e44ad;
+    color: white;
+    width: 220px;
+    min-height: 100vh;
+    padding-top: 60px;
+    position: fixed;
+    transition: transform 0.3s ease;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+    background-color: #732d91;
+}
+
+.navbar {
+    background-color: #3498db;
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    font-size: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.navbar .right {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px 10px;
+    background: #732d91;
+    border-radius: 5px;
+    display: none;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 80px 30px 30px;
+    width: 100%;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+body.dashboard-page.dark .card {
+    background: #2c2f4a;
+    color: #eee;
+}
+
+button.toggle-dark {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+button.toggle-dark:hover {
+    background: #444;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 999;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .content {
+        margin-left: 0;
+        padding-top: 100px;
+    }
+}
