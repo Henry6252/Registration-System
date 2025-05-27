@@ -1,0 +1,126 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 60px;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.navbar h1 {
+    font-size: 20px;
+}
+
+.navbar a.logout {
+    color: #fff;
+    background: #e74c3c;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.navbar a.logout:hover {
+    background: #c0392b;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #34495e;
+    color: #fff;
+    padding-top: 60px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+    background: #2c3e50;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #2c3e50;
+}
+
+.sidebar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #2980b9;
+}
+
+/* Main Dashboard Content */
+.dashboard-content {
+    margin-left: 250px;
+    margin-top: 60px;
+    padding: 30px;
+    width: calc(100% - 250px);
+}
+
+.dashboard-content h1 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.dashboard-content p {
+    margin-bottom: 15px;
+}
+
+/* Role-Based Section Lists */
+ul.role-actions {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.role-actions li {
+    margin: 10px 0;
+}
+
+ul.role-actions li a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+ul.role-actions li a:hover {
+    background-color: #2980b9;
+}
