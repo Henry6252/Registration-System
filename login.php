@@ -12,10 +12,10 @@ if (isset($_GET['registered']) && $_GET['registered'] === 'true') {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
-    $role = $_POST['role'];
+    // $role = $_POST['role'];
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username AND role = :role");
-    $stmt->execute([':username' => $username, ':role' => $role]);
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->execute([':username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
@@ -73,12 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <a href="forgot_password.php" class="link">Forgot your password?</a>
 
-            <select name="role" required>
-                <option value="">Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="tutor">Tutor</option>
-                <option value="student">Student</option>
-            </select>
+           
 
             <button type="submit">Login</button>
         </form>
