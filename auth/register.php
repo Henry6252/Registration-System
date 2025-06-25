@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db.php'; 
+require_once '../config/db.php';
 
 $success = "";
 $error = "";
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ip_address = getClientIP();
 
     $captcha = $_POST['g-recaptcha-response'];
-    $secretKey = "6LcplEIrAAAAAFk5FMiS5sIwX6Ho24q10KiaUwwL"; 
+    $secretKey = "6LcplEIrAAAAAFk5FMiS5sIwX6Ho24q10KiaUwwL";
     $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response={$captcha}");
     $captchaSuccess = json_decode($verifyResponse);
 
@@ -39,16 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/', $password)) {
         $error = "Password must be at least 8 characters long, with letters, numbers, and special characters.";
     } else {
-        $stmt = $pdo->prepare("SELECT * FROM public.users WHERE username = :username OR email = :email");
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username OR email = :email");
         $stmt->execute([':username' => $username, ':email' => $email]);
 
         if ($stmt->fetch()) {
             $error = "Username or Email already exists.";
         } else {
             try {
-                
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("INSERT INTO public.users (first_name, last_name, username, email, phone, password, role)
+                $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, phone, password, role)
                                        VALUES (:first_name, :last_name, :username, :email, :phone, :password, :role)");
                 $stmt->execute([
                     ':first_name' => $first_name,
@@ -58,27 +57,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ':phone' => $phone,
                     ':password' => $hashed_password,
                     ':role' => $role,
-                    
                 ]);
-
-                
 
                 $success = "Registration successful. <a href='login.php'>Now login</a>.";
             } catch (Exception $e) {
                 $error = "Database error: " . $e->getMessage();
-    echo '<div class="error">' . htmlspecialchars($error) . '</div>';
             }
-}
-
         }
     }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         .form-group { margin-bottom: 15px; }
@@ -110,12 +105,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="message success"><?= $success ?></div>
     <?php endif; ?>
     <?php if ($error): ?>
-        <div class="message error"><?= $error ?></div>
+        <div class="message error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
     <form method="post" id="registerForm">
         <div class="form-group">
-            <input type="text" name="first_name" id="first_name" placeholder="First Name" required>
+            <input type="text" name="first_name" placeholder="First Name" required>
         </div>
         <div class="form-group">
             <input type="text" name="last_name" placeholder="Last Name" required>

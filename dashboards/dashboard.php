@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: ../auth/login.php");
     exit();
 }
 ?>
@@ -12,14 +12,10 @@ if (!isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="../assets/css/global.css">
 </head>
 <body class="dashboard-page">
 
-
-
-    
     <div class="sidebar" id="sidebar">
         <a href="#" class="nav-link active" onclick="showSection('dashboard')">Dashboard</a>
         <a href="#" class="nav-link" onclick="showSection('profile')">Profile</a>
@@ -27,19 +23,17 @@ if (!isset($_SESSION['username'])) {
         <a href="#" class="nav-link" onclick="showSection('settings')">Settings</a>
     </div>
 
-    
     <div class="navbar">
         <div style="display: flex; align-items: center;">
             <span class="menu-toggle" onclick="toggleSidebar()">☰</span>
             <h1 style="margin-left: 10px;">My Dashboard</h1>
         </div>
         <div class="right">
-            <a href="logout.php">Logout</a>
+            <a href="../auth/logout.php">Logout</a>
             <button class="toggle-dark" onclick="toggleDarkMode()">🌓</button>
         </div>
     </div>
 
-    
     <div class="content">
         <div id="dashboard" class="card">
             <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
@@ -86,7 +80,6 @@ if (!isset($_SESSION['username'])) {
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
         }
 
-    
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark');
         }

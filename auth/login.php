@@ -1,10 +1,11 @@
 <?php
 session_start();
-require 'db.php';
+require_once '../config/db.php';
 
 $success = "";
 $error = "";
 
+// Check if user just registered
 if (isset($_GET['registered']) && $_GET['registered'] === 'true') {
     $success = "Registration successful! <a href='login.php'>Click here to login</a>.";
 }
@@ -12,7 +13,6 @@ if (isset($_GET['registered']) && $_GET['registered'] === 'true') {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
-    // $role = $_POST['role'];
 
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
     $stmt->execute([':username' => $username]);
@@ -23,15 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['role'] = $user['role'];
         $_SESSION['user_id'] = $user['id'];
 
+        // Redirect based on role
         switch ($user['role']) {
             case 'admin':
-                header("Location: admin_dashboard.php");
+                header("Location: ../dashboards/admin_dashboard.php");
                 break;
             case 'tutor':
-                header("Location: tutor_dashboard.php");
+                header("Location: ../dashboards/tutor_dashboard.php");
                 break;
             case 'student':
-                header("Location: student_dashboard.php");
+                header("Location: ../dashboards/student_dashboard.php");
                 break;
             default:
                 $error = "Unknown user role.";
@@ -39,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         exit();
     } else {
-        $error = "Invalid username, password, or role.";
+        $error = "Invalid username or password.";
     }
 }
 ?>
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="login-page">
     <div class="container">
@@ -72,8 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <a href="forgot_password.php" class="link">Forgot your password?</a>
-
-           
 
             <button type="submit">Login</button>
         </form>
